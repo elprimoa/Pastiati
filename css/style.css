@@ -14,3 +14,21 @@
 .active{
 	background-color: #ffffff;
 }
+
+.signin {
+	background-color: #107FC9;
+	border-color: #107FC9;
+}
+
+.signin:hover {
+	background-color: #23527C;
+  border-color: #23527C;
+}
+
+.resumen {
+	color: #777;
+}
+
+.lastElement {
+	margin-bottom: 10%;
+}
