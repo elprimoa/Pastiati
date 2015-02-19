@@ -1078,7 +1078,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: #fff;
+  background-color: #E1F5FE;
 }
 input,
 button,
@@ -4379,22 +4379,22 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #23527C;
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
-  color: #777;
+  color: #FF9000;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  color: #FF9000;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
-  color: #777;
+  color: #999;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777;
+  color: #999;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
