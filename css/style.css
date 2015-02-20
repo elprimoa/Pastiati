@@ -32,3 +32,9 @@
 .lastElement {
 	margin-bottom: 10%;
 }
+
+.logo {
+	font-family: "dunkin";
+	color: #fff;
+	font-size: 35pt;
+}
