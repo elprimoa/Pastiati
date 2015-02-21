@@ -47,13 +47,19 @@
 	margin-top: 6%;
 }
 
-.label-form{
+.label-form {
 	color: #888;
 }
 
-.mytitle{
+.mytitle {
 	color: #fff;
 	font-family: 'Titulo';
 	font-size: 25pt;
 	text-align: center;
+}
+
+.logo {
+	font-family: "dunkin";
+	color: #fff;
+	font-size: 35pt;
 }
