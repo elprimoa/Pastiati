@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Titulo';
+  src: url('../font/Titulo.ttf');
+}
+
 .header{
 	background-color: #23527C;
 }
@@ -31,4 +36,24 @@
 
 .lastElement {
 	margin-bottom: 10%;
+}
+
+.myForm {
+	margin-right: 35%;
+	margin-left: 35%;
+}
+
+.first {
+	margin-top: 6%;
+}
+
+.label-form{
+	color: #888;
+}
+
+.mytitle{
+	color: #fff;
+	font-family: 'Titulo';
+	font-size: 25pt;
+	text-align: center;
 }
