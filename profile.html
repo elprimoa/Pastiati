@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pastiati - Register</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container header">
+			<div class="navbar-header">
+				<a class="logo navbar-brand" href="home.html">Pastiati</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="home.html">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+				<form class="navbar-form navbar-right" id="login-form">
+          <div class="form-group">
+            <input type="text" placeholder="Email" class="form-control" id="email-field">
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Password" class="form-control" id="pass-field">
+          </div>
+          <button type="button" class="btn btn-success " onclick="login()">Log in</button>
+        </form>
+			</div>
+		</div>
+	</nav>
+	<div class="profile jumbotron">
+		<div class="container">
+			<div class="col-md-3 col-md-offset-3 centerfy">
+				<div class="fileinput fileinput-new" data-provides="fileinput">
+		  			<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+			  		<div>
+			   	 <span class="btn btn-success signin btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+			    		<a href="#" class="btn btn-success signin fileinput-exists" data-dismiss="fileinput">Remove</a>
+			  		</div>
+				</div>
+				<h3 id="username"><b>ElPrimoA</b></h3>
+			</div>
+			<div class="col-sm-6">
+				<h2 id="fullname">Luis Arguello</h2>
+				<h3 id="useremail">luis.arguello@gmail.com</h3>
+				<br>
+				<button type="button" class="btn btn-success signin">Modify Profile</button>
+				<button type="button" class="btn btn-success signin">Change Password</button>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+	<script type="text/javascript" src="js/load.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jasny-bootstrap.js"></script>
+</body>
