@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pastiati - Register</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body background="media/background.jpg">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container header">
+			<div class="navbar-header">
+				<a class="logo navbar-brand" href="home.html">Pastiati</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="home.html">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="username">
+					<li class="active"><a href="#create">Crear Pastie</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>User</b> <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Perfil</a></li>
+							<li><a href="#" onclick="logout('create')">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="first">
+		<p class="mytitle">Complete this form and start using Pastiati</p>
+		<div class="row well well-lg createForm">
+			<div class=".col-md-6">
+				<form class="form" method="POST">
+					<div class="form-group">
+						<label class="label-form" for="name">Title</label>
+	  					<input type="text" class="form-control" id="title" required>
+	  				</div>
+	  				<div class="form-group">
+	  					<label class="label-form" for="lastname">Introduce content</label>
+	  					<textarea type="text" class="form-control" id="content"></textarea>
+	  				</div>
+	  				<div class="form-group">
+					    <label class="label-form file-label" for="exampleInputFile" id="label-file">Or upload it</label>
+					    <input type="file" id="exampleInputFile" accept="text/plain">
+					    <p class="help-block">Select a .txt file on your computer.</p>
+					  </div>
+					<br>
+					<center>
+						<button type="submit" class="btn btn-success">Create</button>
+					</center>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+    Copyright 2015 Luis Arguello - Rosmeli Quintero - All rights reserved | Powered by Bootstrap and jQuery
+  </footer>
+
+  <script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+	<script type="text/javascript" src="js/load.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>

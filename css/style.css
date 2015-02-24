@@ -69,6 +69,7 @@
 }
 
 footer {
+	border-width: 1px;
 	text-align: center;
 	background-color: #23527C;
 	border-color: #E7E7E7;
@@ -80,4 +81,25 @@ footer {
 
 .fixed-jumbo {
 	width: 90%;
+}
+
+.file-label {
+	border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#exampleInputFile {
+	display: none;
+}
+
+#content {
+	resize: vertical;
+}
+
+.createForm {
+		margin-right: 28%;
+	margin-left: 28%;
 }
