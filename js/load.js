@@ -48,10 +48,14 @@ function login() {
 		return;
 	}
 	$("#login-form").remove();
-	$("#navbar").append('<ul class="nav navbar-nav navbar-right" id="username"><li><a href="create.html">Crear Pastie</a></li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>' + email + '</b> <span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="profile.html">Perfil</a></li><li><a href="#" onclick="logout(\'\')">Log out</a></li></ul></li></ul>');
+	$("#navbar").append('<ul class="nav navbar-nav navbar-right" id="username"><li><a href="create.html">Crear Pastie</a></li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>' + email + '</b> <span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="profile.html">Profile</a></li><li><a href="#" onclick="logout(\'\')">Log out</a></li></ul></li></ul>');
 }
 
 function logout(msj) {
+	if(msj === 'home') {
+		window.location = "home.html";
+		return;
+	}
 	$("#username").remove();
 	$("#navbar").append('<form class="navbar-form navbar-right" id="login-form"><div class="form-group has-feedback" id="email-div"><input type="text" placeholder="Email" class="form-control" id="email-field"> </div> <div class="form-group has-feedback"> <input type="password" placeholder="Password" class="form-control" id="pass-field"> </div> <button type="button" class="btn btn-success" onclick="login()">Log in</button></form>');
 	$("#email-field").keypress(function(event) {
@@ -67,7 +71,5 @@ function logout(msj) {
         login();
     }
 	});
-	if(msj === 'create') {
-		window.location = "home.html";
-	}
+	
 }

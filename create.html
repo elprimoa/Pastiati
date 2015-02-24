@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pastiati - Register</title>
+	<title>Pastiati - Create</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body background="media/background.jpg">
+<body background="media/orangebk.jpg">
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container header">
 			<div class="navbar-header">
@@ -22,8 +22,8 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>User</b> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Perfil</a></li>
-							<li><a href="#" onclick="logout('create')">Log out</a></li>
+							<li><a href="profile.html">Profile</a></li>
+							<li><a href="#" onclick="logout('home')">Log out</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -41,12 +41,17 @@
 	  				</div>
 	  				<div class="form-group">
 	  					<label class="label-form" for="lastname">Introduce content</label>
-	  					<textarea type="text" class="form-control" id="content"></textarea>
+	  					<textarea type="text" class="form-control" id="content" rows="10"></textarea>
 	  				</div>
 	  				<div class="form-group">
 					    <label class="label-form file-label" for="exampleInputFile" id="label-file">Or upload it</label>
 					    <input type="file" id="exampleInputFile" accept="text/plain">
 					    <p class="help-block">Select a .txt file on your computer.</p>
+					  </div>
+					  <div class="checkbox">
+					    <label class="label-form">
+					      <input type="checkbox"> Make this pastie <b>private</b>
+					    </label>
 					  </div>
 					<br>
 					<center>
