@@ -67,3 +67,17 @@
 .logo:hover {
 	color: #fff;
 }
+
+footer {
+	text-align: center;
+	background-color: #23527C;
+	border-color: #E7E7E7;
+	color: #FFF;
+	position: fixed;
+	bottom: 0;
+	width:100%;
+}
+
+.fixed-jumbo {
+	width: 90%;
+}
