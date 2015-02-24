@@ -23,6 +23,11 @@ function load(){
 
 function login() {
 	var email = $("#email-field").val();
+	if(!email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')) {
+		$("#email-div").addClass("has-error");
+		$("#email-div").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
+		return;
+	}
 	$("#login-form").remove();
 	$("#navbar").append('<ul class="nav navbar-nav navbar-right" id="username"><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>' + email + '</b> <span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="#">Crear Pastie</a></li><li><a href="#">Perfil</a></li><li><a href="#" onclick="logout()">Log out</a></li></ul></li></ul>');
 }
