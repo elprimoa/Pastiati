@@ -29,7 +29,7 @@ $("#sendemail").click(function () {
   	$("#le-alert").addClass("in");
 });
 
-$('.close').click(function () {
+$('#close-forgot').click(function () {
   	$(this).parent().removeClass('in'); 
   	window.location = "home.html";
 });
@@ -89,3 +89,43 @@ function logout(msj) {
 	
 }
 
+function loadOwn(){
+	$.getJSON("pasties.json", function(data) {
+	    for(i=idx;i<idx+5;i++){
+	    	id = data[i].id;
+	    	$(".panel-group").append('<div class="panel panel-default"><div id="p'+id+'" class="panel-heading"><h4 id="pp' + id + '" class="panel-title">');
+	    	if(data[i].private) {
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a> <img src="media/lock.png"/><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    	}
+	    	else {
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    	}
+	    	console.log($("#pp"+id));
+			$('#p'+id).append('<div id="pastie'+data[i].id+'" class="panel-collapse collapse"><div id="dv' + id + '" class="panel-body">');
+	        $('#dv' + id).append('<p id="dvp' + id + '">' + data[i].content + '</p><br>');
+	    }
+	    idx=idx+5;
+	    $("#morePasties").blur();
+	});
+}
+
+function verifyPass(url) {
+	var p1 = $("#Password2").val();
+	var p2 = $("#Password3").val();
+	if(p1 === p2) {
+		if(url === "home.html") {
+			window.location = url;
+		}
+		else {
+			$("#le-alert").addClass("in");
+			$('#close-change').click(function () {
+		  	$(this).parent().removeClass('in'); 
+		  	window.location = url;
+			});
+		}
+	}
+	else {
+		$("#confirm-pass").addClass("has-error");
+		$("#confirm-pass").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
+	}
+}

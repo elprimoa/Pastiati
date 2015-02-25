@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.css">
   	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body onload="load()">
+<body onload="loadOwn()">
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container header">
 			<div class="navbar-header">
@@ -48,7 +48,7 @@
 				<h3 id="useremail">luis.arguello@gmail.com</h3>
 				<br>
 				<button type="button" class="btn btn-default signin">Modify Profile</button>
-				<button type="button" class="btn btn-default signin">Change Password</button>
+				<button type="button" class="btn btn-default signin" onclick="window.location='change.html'">Change Password</button>
 			</div>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
     <br>
 		<div class="col-md-11 col-md-offset-1 centerfy">
 			<div class="panel-group" id="accordion"></div>
-			<button id="morePasties" type="button" class="btn btn-default pull-right lastElement" onclick="load()">Load more</button>
+			<button id="morePasties" type="button" class="btn btn-default pull-right lastElement" onclick="loadOwn()">Load more</button>
 		</div>
 	</div>
 

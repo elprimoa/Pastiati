@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pastiati - Register</title>
+	<title>Pastiati - New Password</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -33,44 +33,33 @@
         </form>
 			</div>
 		</div>
-	</nav>
+	</nav><br><br><br>
 	<div class="first">
-		<p class="mytitle">Complete this form and start using Pastiati</p>
+		<p class="mytitle">Complete this form and start using Pastiati again</p>
 		<div class="row well well-lg myForm">
 			<div class=".col-md-6">
 				<form class="form" method="POST">
-					<div class="form-group">
-						<label class="label-form" for="name">Username</label>
-	  					<input type="text" class="form-control" id="name" required>
-	  				</div>
-	  				<div class="form-group">
-	  					<label class="label-form" for="lastname">Fullname</label>
-	  					<input type="text" class="form-control" id="lastname" required>
-	  				</div>
-	  				<div class="form-group">
-	  					<label class="label-form" for="mymail">Email</label>
-	  					<input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" id="lastname" required>
-	  				</div>
 				  	<div class="form-group">
-					    <label class="label-form" for="Password2">Password</label>
+					    <label class="label-form" for="Password2">New Password</label>
 					    <input type="password" class="form-control" id="Password2" required>
 				  	</div>
 				  	<div class="form-group has-feedback" id="confirm-pass">
-					    <label class="label-form" for="Password3">Confirm Password</label>
+					    <label class="label-form" for="Password3">Confirm New Password</label>
 					    <input type="password" class="form-control" id="Password3" required>
 				  	</div>
-					<div>
-						<input type="radio" id="acc">
-						<label class="label-form" for="acc">Clicking on the Register button indicates that you agree with our terms and conditions</label>
-					</div>
 					<br>
 					<center>
-						<button type="button" class="btn btn-success" onclick="verifyPass('home.html')">Register</button>
+						<button type="button" class="btn btn-success" onclick="verifyPass('profile.html')">Change</button>
 					</center>
 				</form>
 			</div>
 		</div>
-	</div>
+	</div><br>
+	<div id="le-alert" class="alert alert-success alert-block fade">
+      <button href="#" type="button" class="close" id="close-change">&times;</button>
+      <h4>Great</h4>
+      <p>Your password has been established.</p>
+  </div>
 
 	<footer>
     Copyright 2015 Luis Arguello - Rosmeli Quintero - All rights reserved | Powered by Bootstrap and jQuery
