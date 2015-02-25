@@ -1,6 +1,11 @@
 @font-face {
-  font-family: 'Titulo';
-  src: url('../fonts/Titulo.ttf');
+  font-family: 'Cool';
+  src: url('../fonts/Cool.ttf') format("opentype");
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto.ttf') format("opentype");
 }
 
 .header{
@@ -23,11 +28,13 @@
 .signin {
 	background-color: #107FC9;
 	border-color: #107FC9;
+	color: #fff;
 }
 
 .signin:hover {
 	background-color: #23527C;
   	border-color: #23527C;
+  	color: #fff;
 }
 
 .resumen {
@@ -53,7 +60,7 @@
 
 .mytitle {
 	color: #fff;
-	font-family: 'Titulo';
+	font-family: 'Cool';
 	font-size: 25pt;
 	text-align: center;
 }
@@ -95,10 +102,10 @@ footer {
 
 .file-label {
 	border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  border-radius: 5px;
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
+	border-radius: 5px;
 }
 
 #exampleInputFile {
@@ -110,6 +117,54 @@ footer {
 }
 
 .createForm {
-		margin-right: 28%;
+	margin-right: 28%;
 	margin-left: 28%;
+}
+
+.about {
+	background-color: #23527C;
+	padding-left: 15px;
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	margin-top: 15%;
+	color: #fff;
+	border-radius: 20px;
+}
+
+.ex {
+	font-family: 'Cool';
+	font-size: 18pt;
+}
+
+.row {
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.mytext {
+	font-family: 'Roboto';
+	font-size: 15pt;
+}
+
+.mystext {
+	font-size: 12pt;
+}
+
+.tittle2 {
+	font-family: 'dunkin';
+	font-size: 20pt;
+	color: #F7C006;
+	text-align: center;
+}
+
+.forgot {
+	margin-right: 30%;
+	margin-left: 30%;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #fff;
+	border-radius: 20px;
 }

@@ -17,7 +17,16 @@ $("#pass-field").keypress(function(event) {
 $("#exampleInputFile").change(function() {
 	$(".help-block").text('File: ' + $("#exampleInputFile").val());
 	console.log('File: ' + $("#exampleInputFile").val());
-})
+});
+
+$("#sendemail").click(function () {
+  	$("#le-alert").addClass("in");
+});
+
+$('.close').click(function () {
+  	$(this).parent().removeClass('in'); 
+  	window.location = "home.html";
+});
 
 function load(){
 	$.getJSON("pasties.json", function(data) {
