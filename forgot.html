@@ -33,25 +33,26 @@
         </form>
       </div>
     </div>
-  </nav><br><br>
-  <div id="le-alert" class="alert alert-success alert-block fade">
-      <button href="#" type="button" class="close">&times;</button>
-      <h4>Great</h4>
-      <p>An email was send to your inbox. Click the link and start using PastiAti</p>
-  </div>
-  <div class="first container">    
+  </nav>
+ 
+  <div class="second container">    
     <p class="mytitle">Forgot your password? No worries. Just confirm your email</p>
     <div class="forgot">
       <form class="form" method="POST">
-        <div class="form-group">
+        <div class="form-group  has-feedback" id="email-div-ver">
           <label class="label-form" for="mymail">Email</label>
-          <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" id="lastname" required>
+          <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" id="email-field-ver" required>
         </div>
         <center>
           <button id="sendemail" type="button" class="btn btn-success">Send confirmation email</button>
         </center>
       </form>
     </div>
+  </div><br>
+   <div id="le-alert" class="alert alert-success alert-block fade">
+      <button href="#" type="button" class="close">&times;</button>
+      <h4>Great</h4>
+      <p>An email was send to your inbox. Click the link and start using PastiAti</p>
   </div>
 
   <footer>

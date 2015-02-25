@@ -20,6 +20,12 @@ $("#exampleInputFile").change(function() {
 });
 
 $("#sendemail").click(function () {
+		var email = $("#email-field-ver").val();
+		if(!email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')) {
+			$("#email-div-ver").addClass("has-error");
+			$("#email-div-ver").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
+			return;
+		}
   	$("#le-alert").addClass("in");
 });
 
@@ -82,3 +88,4 @@ function logout(msj) {
 	});
 	
 }
+
