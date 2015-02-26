@@ -5,8 +5,9 @@
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto.ttf') format("opentype");
+  src: url('../fonts/RobotoR.ttf') format("opentype");
 }
+
 
 .header{
 	background-color: #23527C;
@@ -175,4 +176,38 @@ footer {
 
 #acc {
 	display: none;
+}
+
+.pastieop {
+	margin-right: 20%;
+	margin-left: 20%;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	background-color: #E7E7E7;
+	border-top-left-radius:2em;
+	border-top-right-radius:2em;
+}
+
+.pastiecont {
+	margin-right: 20%;
+	margin-left: 20%;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 5px;
+	padding-bottom: 20px;
+	background-color: #FFF;
+	border-bottom-right-radius:2em;
+	border-bottom-left-radius:2em;
+}
+
+.pastiecont > h2 {
+	color: #23527C;
+	font-family: 'Roboto';
+}
+
+.pastiecont > h3 {
+	color: #777;
+	font-family: 'Roboto';
 }
