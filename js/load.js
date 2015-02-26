@@ -49,6 +49,7 @@ function load(){
 			$('#p'+id).append('<div id="pastie'+data[i].id+'" class="panel-collapse collapse"><div id="dv' + id + '" class="panel-body">');
 	        $('#dv' + id).append('<p id="dvp' + id + '">' + data[i].content + '</p><br>');
 	        $('#dv' + id).append('<p><b>Owner:</b> ' + data[i].owner + '</p>');
+	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie.html">' + data[i].url + '</a></p>');
 	    }
 	    idx=idx+5;
 	    $("#morePasties").blur();
