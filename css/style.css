@@ -222,3 +222,8 @@ footer {
 	color: #000;
 	text-align: right;
 }
+
+.lock {
+	margin-left: 0.5%;
+	font-size: 0.8em;
+}
