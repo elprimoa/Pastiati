@@ -131,3 +131,18 @@ function verifyPass(url, id) {
 		return false;
 	}
 }
+
+function loadpastie(){
+	$.getJSON("pastie.json", function(data) {
+
+		if(data[0].private) {
+			$('#mypastie').append('<h2>' + data[0].title + '</h2>')
+		}
+		else {
+			$('#mypastie').append('<h2>' + data[0].title + '</h2>')
+		}
+	    $('#mypastie').append('<h4>' + data[0].content + '</h4><br>');
+	    $('#mypastie').append('<p><b>Owner:</b> ' + data[0].owner + '</p>');
+	});
+
+}
