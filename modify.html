@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pastiati - Register</title>
+	<title>Pastiati - Change Password</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -17,33 +17,25 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="contact.html">Contact</a></li>
 				</ul>
-				<form class="navbar-form navbar-right" id="login-form">
-          <div class="form-group has-feedback" id="email-div">
-            <input type="text" placeholder="Email" class="form-control" id="email-field">
-          </div>
-          <div class="form-group has-feedback">
-            <input type="password" placeholder="Password" class="form-control" id="pass-field">
-          </div>
-          <button type="button" class="btn btn-success" onclick="login()">Log in</button>
-          <div class="form-group has-feedback">
-            <a href="forgot.html">
-              <img src='media/forgot.png' height="30" width="30">
-            </a>
-          </div>
-        </form>
+				<ul class="nav navbar-nav navbar-right" id="username">
+					<li><a href="#">Crear Pastie</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>ElPrimoA</b> <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="profile.html">Profile</a></li>
+							<li><a href="#" onclick="logout('home')">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav><br><br><br>
 	<div class="first">
-		<p class="mytitle">Complete this form and start using Pastiati</p>
+		<p class="mytitle">Complete this form and update your information</p>
 		<div class="row well well-lg myForm">
 			<div class=".col-md-6">
 				<form class="form" method="POST">
-					<div class="form-group">
-						<label class="label-form" for="name">Username</label>
-	  					<input type="text" class="form-control" id="name" required>
-	  				</div>
-	  				<div class="form-group">
+				  	<div class="form-group">
 	  					<label class="label-form" for="lastname">Fullname</label>
 	  					<input type="text" class="form-control" id="lastname" required>
 	  				</div>
@@ -52,20 +44,12 @@
 	  					<input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" id="mymail" required>
 	  				</div>
 				  	<div class="form-group">
-					    <label class="label-form" for="Password2">Password</label>
+					    <label class="label-form" for="Password2">Actual Password</label>
 					    <input type="password" class="form-control" id="Password2" required>
 				  	</div>
-				  	<div class="form-group has-feedback" id="confirm-pass">
-					    <label class="label-form" for="Password3">Confirm Password</label>
-					    <input type="password" class="form-control" id="Password3" required>
-				  	</div>
-					<div>
-						<input type="radio" id="acc">
-						<label class="label-form" for="acc">Clicking on the Register button indicates that you agree with our terms and conditions</label>
-					</div>
 					<br>
 					<center>
-						<button type="button" class="btn btn-success" onclick="verifyPass('home.html')">Register</button>
+						<button type="submit" class="btn btn-success" onclick="window.location='profile.html'" >Modify</button>
 					</center>
 				</form>
 			</div>
