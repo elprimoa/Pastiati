@@ -211,3 +211,8 @@ footer {
 	color: #777;
 	font-family: 'Roboto';
 }
+
+.lock {
+	margin-left: 0.5%;
+	font-size: 0.8em;
+}
