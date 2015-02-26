@@ -38,7 +38,7 @@
 		<p class="mytitle">Complete this form and start using Pastiati again</p>
 		<div class="row well well-lg myForm">
 			<div class=".col-md-6">
-				<form class="form" method="POST">
+				<form class="form" method="POST" id="new-form" action="profile.html">
 				  	<div class="form-group">
 					    <label class="label-form" for="Password2">New Password</label>
 					    <input type="password" class="form-control" id="Password2" required>
@@ -49,7 +49,7 @@
 				  	</div>
 					<br>
 					<center>
-						<button type="button" class="btn btn-success" onclick="verifyPass('profile.html')">Change</button>
+						<button type="submit" class="btn btn-success" onclick="return verifyPass('profile.html', '#new-form');">Change</button>
 					</center>
 				</form>
 			</div>

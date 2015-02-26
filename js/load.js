@@ -20,7 +20,7 @@ $("#exampleInputFile").change(function() {
 });
 
 $("#sendemail").click(function () {
-		var email = $("#email-field-ver").val();
+		var email = $("#email-field-ver").val(); 
 		if(!email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')) {
 			$("#email-div-ver").addClass("has-error");
 			$("#email-div-ver").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
@@ -31,7 +31,7 @@ $("#sendemail").click(function () {
 
 $('#close-forgot').click(function () {
   	$(this).parent().removeClass('in'); 
-  	window.location = "home.html";
+  	$("#forgot-form").submit();
 });
 
 function load(){
@@ -109,23 +109,24 @@ function loadOwn(){
 	});
 }
 
-function verifyPass(url) {
+function verifyPass(url, id) {
 	var p1 = $("#Password2").val();
 	var p2 = $("#Password3").val();
 	if(p1 === p2) {
 		if(url === "home.html") {
-			window.location = url;
+			return true;
 		}
 		else {
 			$("#le-alert").addClass("in");
 			$('#close-change').click(function () {
 		  	$(this).parent().removeClass('in'); 
-		  	window.location = url;
-			});
+		  	return true;
+			}); 
 		}
 	}
 	else {
 		$("#confirm-pass").addClass("has-error");
 		$("#confirm-pass").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
+		return false;
 	}
 }
