@@ -1,5 +1,5 @@
 from flask import *
-from flast_mail import Mail
+from flask_mail import Mail
 from models.pasties import *
 
 app = Flask (__name__, template_folder = 'views', static_folder = 'statics')
