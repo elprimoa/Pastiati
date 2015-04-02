@@ -72,6 +72,11 @@ function login() {
 	.done(function(data) {
 		$("#login-form").remove();
 		$("#navbar").append('<ul class="nav navbar-nav navbar-right" id="username"><li><a href="create">Crear Pastie</a></li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>' + data + '</b> <span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="profile">Profile</a></li><li><a href="#" onclick="logout(\'\')">Log out</a></li></ul></li></ul>');
+	})
+	.fail(function() {
+		$("#email-field").val("");
+		$("#pass-field").val("");
+		alert('Wrong user/password combination.');
 	});
 }
 

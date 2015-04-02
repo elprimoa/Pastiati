@@ -53,6 +53,12 @@ def doregister():
   email = request.form['email']
   password = request.form['password']
   session['username'] = username
+  u = User()
+  u.username = username
+  u.fullname = fullname
+  u.email = email
+  u.password = password
+  u.save()
   return redirect(url_for('home'))
 
 @app.route('/create')
@@ -66,8 +72,11 @@ def create():
 def login():
   email = request.form['email']
   password = request.form['pass']
-  session['username'] = "ElPrimoA"
-  return "ElPrimoA"
+  u = User(email = email)
+  if u.email and u.password == password:
+    session['username'] = u.username
+    return u.username
+  abort(404)
 
 @app.route('/logout', methods = ['POST'])
 def logout():
