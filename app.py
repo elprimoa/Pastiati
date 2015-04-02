@@ -1,21 +1,26 @@
 from flask import *
+from flast_mail import Mail
 from models.pasties import *
 
 app = Flask (__name__, template_folder = 'views', static_folder = 'statics')
+mail = Mail(app)
 
 # Routes goes here
 @app.route('/')
-def index():
-  return 'Hello Flask'
+def home():
+  return render_template('home.html')
 
-@app.route('/sayhello')
-def sayhello():
-  name = request.args.get('name')
-  return render_template('say.html', name = name)
+@app.route('/about')
+def about():
+  return render_template('about.html')
 
-@app.route('/form')
-def form():
-  return render_template('form.html')
+@app.route('/contact')
+def contact():
+  return render_template('contact.html')
+
+@app.route('/register')
+def register():
+  return render_template('register.html')
 
 @app.route('/login', methods = ['POST'])
 def pedro():
@@ -25,6 +30,10 @@ def pedro():
   if user and user.password == password:
     return render_template('say.html')
   return render_template('form.html')
+
+@app.route('/forgot')
+def forgot():
+  return render_template('forgot.html')
 
 if __name__ == '__main__':
   app.debug = True
