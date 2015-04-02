@@ -57,37 +57,32 @@ function load(){
 }
 
 function login() {
-	var email = $("#email-field").val();
-	if(!email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')) {
+	var memail = $("#email-field").val();
+	var mpass = $("#pass-field").val();
+	if(!memail.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')) {
 		$("#email-div").addClass("has-error");
 		$("#email-div").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
 		return;
 	}
-	$("#login-form").remove();
-	$("#navbar").append('<ul class="nav navbar-nav navbar-right" id="username"><li><a href="create.html">Crear Pastie</a></li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>' + email + '</b> <span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="profile.html">Profile</a></li><li><a href="#" onclick="logout(\'\')">Log out</a></li></ul></li></ul>');
+	$.ajax({
+		method: 'POST', 
+		url: "http://127.0.0.1:8000/login", 
+		data: { email: memail, pass: mpass }
+	})
+	.done(function(data) {
+		$("#login-form").remove();
+		$("#navbar").append('<ul class="nav navbar-nav navbar-right" id="username"><li><a href="create">Crear Pastie</a></li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>' + data + '</b> <span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="profile">Profile</a></li><li><a href="#" onclick="logout(\'\')">Log out</a></li></ul></li></ul>');
+	});
 }
 
 function logout(msj) {
-	if(msj === 'home') {
-		window.location = "home.html";
-		return;
-	}
-	$("#username").remove();
-	$("#navbar").append('<form class="navbar-form navbar-right" id="login-form"><div class="form-group has-feedback" id="email-div"><input type="text" placeholder="Email" class="form-control" id="email-field"> </div> <div class="form-group has-feedback"> <input type="password" placeholder="Password" class="form-control" id="pass-field"> </div> <button type="button" class="btn btn-success" onclick="login()">Log in</button></form>');
-	$("#email-field").keypress(function(event) {
-  	if (event.which == 13) {
-        event.preventDefault();
-        login();
-    }
+	$.ajax({
+		method: 'POST',
+		url: "http://127.0.0.1:8000/logout"
+	})
+	.done(function() {
+		window.location = "home";
 	});
-
-	$("#pass-field").keypress(function(event) {
-    if (event.which == 13) {
-        event.preventDefault();
-        login();
-    }
-	});
-	
 }
 
 function loadOwn(){

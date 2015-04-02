@@ -9,20 +9,32 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container header">
       <div class="navbar-header">
-        <a class="logo navbar-brand" href="..">Pastiati</a>
+        <a class="logo navbar-brand" href="home">Pastiati</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a href="..">Home</a></li>
+          <li><a href="home">Home</a></li>
           <li><a href="about">About</a></li>
           <li class="active"><a href="contact">Contact</a></li>
         </ul>
+        {% if username %}
+        <ul class="nav navbar-nav navbar-right" id="username">
+          <li><a href="create">Crear Pastie</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>{{username}}</b> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="profile">Profile</a></li>
+              <li><a href="#" onclick="logout('home')">Log out</a></li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
         <form class="navbar-form navbar-right" id="login-form">
           <div class="form-group has-feedback" id="email-div">
-            <input type="text" placeholder="Email" class="form-control" id="email-field">
+            <input type="text" placeholder="Email" class="form-control" id="email-field" name="email">
           </div>
           <div class="form-group has-feedback">
-            <input type="password" placeholder="Password" class="form-control" id="pass-field">
+            <input type="password" placeholder="Password" class="form-control" id="pass-field" name="password">
           </div>
           <button type="button" class="btn btn-success" onclick="login()">Log in</button>
           <div class="form-group has-feedback">
@@ -31,6 +43,7 @@
             </a>
           </div>
         </form>
+        {% endif %}
       </div>
     </div>
   </nav><br><br>
@@ -58,5 +71,9 @@
   <footer>
     Copyright 2015 Luis Arguello - Rosmeli Quintero - All rights reserved | Powered by Bootstrap and jQuery
   </footer>
+
+  <script type="text/javascript" src="statics/js/jquery-2.1.3.js"></script>
+  <script type="text/javascript" src="statics/js/load.js"></script>
+  <script type="text/javascript" src="statics/js/bootstrap.js"></script>
 </body>
 </html>

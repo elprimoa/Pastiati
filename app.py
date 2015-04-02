@@ -8,36 +8,62 @@ MAIL_PORT = 465
 MAIL_USE_SSL = True
 MAIL_USERNAME = 'ppastiati@gmail.com'
 MAIL_PASSWORD = 'ati*pastiati'
+SECRET_KEY = 'development key'
 
 app = Flask (__name__, template_folder = 'views', static_folder = 'statics')
 app.config.from_object(__name__)
 mail = Mail(app)
 
-# Routes goes here
 @app.route('/')
+def index():
+  return redirect(url_for('home'))
+
+@app.route('/home')
 def home():
+  if 'username' in session:
+    username = session['username']
+    return render_template('home.html', username = username)
   return render_template('home.html')
 
 @app.route('/about')
 def about():
+  if 'username' in session:
+    username = session['username']
+    return render_template('about.html', username = username)
   return render_template('about.html')
 
 @app.route('/contact')
 def contact():
+  if 'username' in session:
+    username = session['username']
+    return render_template('contact.html', username = username)
   return render_template('contact.html')
 
 @app.route('/register')
 def register():
+  if 'username' in session:
+    username = session['username']
+    return render_template('register.html', username = username)
   return render_template('register.html')
 
+@app.route('/create')
+def create():
+  if 'username' in session:
+    username = session['username']
+    return render_template('create.html', username = username)
+  return render_template('create.html')
+
 @app.route('/login', methods = ['POST'])
-def pedro():
-  email = request.form['Email']
-  password = request.form['Password']
-  user = User(email = email)
-  if user and user.password == password:
-    return render_template('say.html')
-  return render_template('form.html')
+def login():
+  email = request.form['email']
+  password = request.form['pass']
+  session['username'] = "ElPrimoA"
+  return "ElPrimoA"
+
+@app.route('/logout', methods = ['POST'])
+def logout():
+  session.pop('username', None)
+  return ""
 
 @app.route('/forgot')
 def forgot():
