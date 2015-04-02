@@ -3,7 +3,7 @@ import psycopg2
 class User:
   def __init__(self, email = None):
     if email:
-      connection = psycopg2.connect('dbname=ati user=primo password=jbernadas host=127.0.0.1')
+      connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
       query = connection.cursor()
       query.execute('select email, password from users where email=%s', (email,))
       result = query.fetchone()

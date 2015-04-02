@@ -1,0 +1,18 @@
+CREATE TABLE usuario(
+	id SERIAL PRIMARY KEY,
+	username VARCHAR (50) UNIQUE NOT NULL,
+	fullname VARCHAR(50) NOT NULL,
+	password VARCHAR (50) NOT NULL,
+	email VARCHAR (355) UNIQUE NOT NULL
+);
+
+CREATE TABLE pastie(
+	id SERIAL PRIMARY KEY,
+	title VARCHAR (50) NOT NULL,
+	content VARCHAR(1000) NOT NULL,
+	owner INTEGER NOT NULL,
+	private INTEGER,
+	created_at TIMESTAMP NOT NULL,
+	updated_at TIMESTAMP,
+	CONSTRAINT user_pastie_fk FOREIGN KEY (id) REFERENCES usuario (id) MATCH SIMPLE
+);
