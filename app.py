@@ -46,6 +46,15 @@ def register():
     return render_template('register.html', username = username)
   return render_template('register.html')
 
+@app.route('/doregister', methods = ['POST'])
+def doregister():
+  username = request.form['username']
+  fullname = request.form['fullname']
+  email = request.form['email']
+  password = request.form['password']
+  session['username'] = username
+  return redirect(url_for('home'))
+
 @app.route('/create')
 def create():
   if 'username' in session:
