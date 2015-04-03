@@ -86,7 +86,7 @@ function logout(msj) {
 		url: "http://127.0.0.1:8000/logout"
 	})
 	.done(function() {
-		window.location = "home";
+		window.location = msj;
 	});
 }
 
@@ -121,19 +121,4 @@ function verifyPass(url, id) {
 		$("#confirm-pass").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
 		return false;
 	}
-}
-
-function loadpastie(){
-	$.getJSON("pastie.json", function(data) {
-
-		if(data[0].private) {
-			$('#mypastie').append('<h2>' + data[0].title + ' <span class="glyphicon glyphicon-lock lock" aria-hidden="true"></span> </h2>')
-		}
-		else {
-			$('#mypastie').append('<h2>' + data[0].title + '</h2>')
-		}
-	    $('#mypastie').append('<h4>' + data[0].content + '</h4><br>');
-	    $('#mypastie').append('<p><b>Owner:</b> ' + data[0].owner + '</p>');
-	});
-
 }

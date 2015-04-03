@@ -13,9 +13,9 @@ CREATE TABLE pastie(
 	id SERIAL PRIMARY KEY NOT NULL,
 	title VARCHAR (50) NOT NULL,
 	content VARCHAR(1000) NOT NULL,
-	owner INTEGER NOT NULL,
+	owner VARCHAR (50) NOT NULL,
 	private INTEGER,
 	created_at TIMESTAMP NOT NULL,
 	updated_at TIMESTAMP,
-	CONSTRAINT user_pastie_fk FOREIGN KEY (id) REFERENCES usuario (id) MATCH SIMPLE
+	CONSTRAINT user_pastie_fk FOREIGN KEY (owner) REFERENCES usuario (username) MATCH SIMPLE
 );

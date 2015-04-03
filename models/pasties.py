@@ -58,3 +58,38 @@ class User:
       connection.commit()
       query.close()
       connection.close()
+
+
+class Pastie:
+  def __init__(self, pid = None):
+    if pid:
+      connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+      query = connection.cursor()
+      query.execute('SELECT title, content, owner, private, created_at, updated_at from pastie where id = %s', (pid,))
+      result = query.fetchone()
+      if result:
+        self.id = pid
+        self.title = result[0]
+        self.content = result[1]
+        self.owner = result[2]
+        self.private = result[3]
+        self.created_at = result[4]
+        self.updated_at = result[5]
+      else:
+        self.id = None
+        self.title = None
+        self.content = None
+        self.owner = None
+        self.private = None
+        self.created_at = None
+        self.updated_at = None
+      query.close()
+      connection.close()
+  def save(self, create = None):
+    if create:
+      connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+      query = connection.cursor()
+      query.execute('INSERT INTO pastie (title, content, owner, private, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %s)', (self.title, self.content, self.owner, self.private, self.created_at, self.updated_at,))
+      connection.commit()
+      query.close()
+      connection.close()
