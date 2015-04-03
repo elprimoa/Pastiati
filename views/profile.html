@@ -21,9 +21,9 @@
 				<ul class="nav navbar-nav navbar-right" id="username">
 					<li><a href="create">Crear Pastie</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>ElPrimoA</b> <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>{{u.username}}</b> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li class="active"><a href="#">Profile</a></li>
+							<li class="active"><a href="profile">Profile</a></li>
 							<li><a href="#" onclick="logout('home')">Log out</a></li>
 						</ul>
 					</li>
@@ -41,11 +41,11 @@
 			    		<a href="#" class="btn btn-default signin fileinput-exists" data-dismiss="fileinput">Remove</a>
 			  		</div>
 				</div>
-				<h3 id="username"><b>ElPrimoA</b></h3>
+				<h3 id="username"><b>{{u.username}}</b></h3>
 			</div>
 			<div class="col-sm-6">
-				<h2 id="fullname">Luis Arguello</h2>
-				<h3 id="useremail">luis.arguello@gmail.com</h3>
+				<h2 id="fullname">{{u.fullname}}</h2>
+				<h3 id="useremail">{{u.email}}</h3>
 				<br>
 				<button type="button" class="btn btn-default signin" onclick="window.location='modify'">Modify Profile</button>
 				<button type="button" class="btn btn-default signin" onclick="window.location='change'">Change Password</button>

@@ -20,7 +20,7 @@
 				<ul class="nav navbar-nav navbar-right" id="username">
 					<li><a href="create">Crear Pastie</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>ElPrimoA</b> <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>{{username}}</b> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="profile">Profile</a></li>
 							<li><a href="#" onclick="logout('home')">Log out</a></li>
@@ -29,24 +29,20 @@
 				</ul>
 			</div>
 		</div>
-	</nav><br><br><br>
+	</nav><br><br><br><br><br><br>
 	<div class="first">
 		<p class="mytitle">Complete this form and update your information</p> 
 		<div class="row well well-lg myForm">
 			<div class=".col-md-6">
-				<form class="form" method="POST" id="modify-form" action="profile.html">
+				<form class="form" method="POST" id="modify-form" action="domodify">
 				  	<div class="form-group">
 	  					<label class="label-form" for="lastname">Fullname</label>
-	  					<input type="text" class="form-control" id="lastname">
+	  					<input type="text" class="form-control" id="lastname" name="fullname">
 	  				</div>
 	  				<div class="form-group">
 	  					<label class="label-form" for="mymail">Email</label>
-	  					<input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" id="mymail">
+	  					<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" id="mymail" name="email">
 	  				</div>
-				  	<div class="form-group">
-					    <label class="label-form" for="Password2">Actual Password</label>
-					    <input type="password" class="form-control" id="Password2" required>
-				  	</div>
 					<br>
 					<center>
 						<button type="submit" class="btn btn-success" >Modify</button>

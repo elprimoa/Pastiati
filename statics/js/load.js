@@ -114,16 +114,7 @@ function verifyPass(url, id) {
 	var p1 = $("#Password2").val();
 	var p2 = $("#Password3").val();
 	if(p1 === p2) {
-		if(url === "home.html") {
-			return true;
-		}
-		else {
-			$("#le-alert").addClass("in");
-			$('#close-change').click(function () {
-		  	$(this).parent().removeClass('in'); 
-		  	return true;
-			}); 
-		}
+		return true;
 	}
 	else {
 		$("#confirm-pass").addClass("has-error");
