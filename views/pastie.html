@@ -50,23 +50,20 @@
 
   <div class="first container">
     <div class="pastieop">
-      <a href='#'>
+      <a href='http://www.facebook.com/share.php?u=www.pastiati.com/pastie/{{p.id}}&t={{p.title}}' onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
         <img src='../statics/media/share/facebook.png' height="30" width="30">
       </a>
-      <a href='#'>
+       <a href='https://twitter.com/home?status=Check my pastie www.pastiati.com/pastie/{{p.id}}' onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
         <img src='../statics/media/share/twitter.png' height="30" width="30">
       </a>
-      <a href='#'>
+      <a id="sendemail" href="mailto:myemail?&subject=PastiAti&body=Check%20this%20pastie%20www.pastiati.com/pastie/{{p.id}}" onclick="javascript:var myemail = prompt("Please enter the recipient", "email@asd.as");">
         <img src='../statics/media/share/email.png' height="30" width="30">
       </a>
-      <a href='#'>
+      <a href='https://plus.google.com/share?url=www.pastiati.com/pastie/{{p.id}}' onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
         <img src='../statics/media/share/google.png' height="30" width="30">
       </a>
-      <a href='#'>
-        <img src='../statics/media/share/trash.png' height="30" width="30" align="right">
-      </a>
-      <a href='#'>
-        <img src='../statics/media/share/print.png' height="30" width="30">
+       <a href='#' onclick="redirect(get_id_from_url())">
+        <img src='../statics/media/share/modify.png' height="30" width="30" align="right">
       </a>
     </div>
     <div class="pastiecont" id="mypastie">
