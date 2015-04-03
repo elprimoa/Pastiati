@@ -4,6 +4,7 @@ from models.pasties import *
 from random import *
 from datetime import datetime
 import hashlib
+import simplejson
 
 
 MAIL_SERVER = 'smtp.googlemail.com'
@@ -12,6 +13,7 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = 'ppastiati@gmail.com'
 MAIL_PASSWORD = 'ati*pastiati'
 SECRET_KEY = 'development key'
+ALLOWED_EXTENSIONS = set(['txt'])
 
 app = Flask (__name__, template_folder = 'views', static_folder = 'statics')
 app.config.from_object(__name__)
@@ -89,6 +91,52 @@ def pastie(pid):
     return render_template('pastie.html', error="No tiene permisos de ver ese pastie")
   return render_template('pastie.html', p = p)
 
+@app.route('/loadown', methods = ['GET'])
+def loadown():
+  page = request.args['page']
+  p = Pasties(username = session['username'], condition = 2, offset = page)
+  if len(p.id) == 0:
+    abort(404)
+  to_json = []
+  desired_format = '%Y-%m-%dT%H-%M'
+  for i in range(len(p.id)):
+    p_dict = {}
+    p_dict['id'] = p.id[i]
+    p_dict['title'] = p.title[i]
+    p_dict['content'] = p.content[i]
+    p_dict['owner'] = p.owner[i]
+    p_dict['private'] = p.private[i]
+    p_dict['created_at'] = p.created_at[i].strftime(desired_format)
+    p_dict['updated_at'] = p.updated_at[i].strftime(desired_format)
+    to_json.append(p_dict)
+  response_data = simplejson.dumps(to_json)
+  return response_data
+
+@app.route('/load', methods = ['GET'])
+def load():
+  page = request.args['page']
+  if session.get('username'):
+    p = Pasties(username = session['username'], condition = 1, offset = page)
+  else:
+    p = Pasties(offset = page)
+  if len(p.id) == 0:
+    abort(404)
+  to_json = []
+  desired_format = '%Y-%m-%dT%H-%M'
+  for i in range(len(p.id)):
+    p_dict = {}
+    p_dict['id'] = p.id[i]
+    p_dict['title'] = p.title[i]
+    p_dict['content'] = p.content[i]
+    p_dict['owner'] = p.owner[i]
+    p_dict['private'] = p.private[i]
+    p_dict['created_at'] = p.created_at[i].strftime(desired_format)
+    p_dict['updated_at'] = p.updated_at[i].strftime(desired_format)
+    to_json.append(p_dict)
+  response_data = simplejson.dumps(to_json)
+  return response_data
+
+
 @app.route('/domodify', methods = ['POST'])
 def domodify():
   u = User(username = session['username'])
@@ -118,7 +166,6 @@ def doregister():
   fullname = request.form['fullname']
   email = request.form['email']
   password = hashlib.sha224(request.form['password']).hexdigest()
-  session['username'] = username
   u = User()
   u.username = username
   u.fullname = fullname
@@ -127,19 +174,13 @@ def doregister():
   ve = User(email = email)
   vu = User(username = username)
   if ve.email:
-      flash("Email in use")
-      print(ve.email)
-      print("Email usado")
-      return redirect(url_for('register'))
+      return render_template('register.html', error = "Email existente")
   else:
     if vu.username:
-      flash("Username in use")
-      print("Usuario usado")
-      return redirect(url_for('register'))
+      return render_template('register.html', error = "Username existente")
     else:
       u.save(create = True)
-      flash("User Created")
-      print("Usuario Creado")
+      session['username'] = username
       return redirect(url_for('home'))
 
 @app.route('/dochange', methods = ['POST'])
@@ -162,6 +203,9 @@ def docreate():
   owner = session['username']
   created_at = datetime.now()
   updated_at = created_at
+  cfile = request.files['file']
+  if cfile and allowed_file(cfile.filename):
+    content = cfile.read()
   p = Pastie()
   p.title = title
   p.content = content
@@ -211,6 +255,9 @@ def forgotmail():
   u.password(genkey)
   u.save(password = True)
   return redirect(url_for('home'))
+
+def allowed_file(filename):
+  return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 if __name__ == '__main__':
   app.debug = True

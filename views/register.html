@@ -92,5 +92,6 @@
   <script type="text/javascript" src="statics/js/jquery-2.1.3.js"></script>
 	<script type="text/javascript" src="statics/js/load.js"></script>
 	<script type="text/javascript" src="statics/js/bootstrap.js"></script>
+	{% if error %} <script> alert('{{error}}'); </script> {% endif %}
 </body>
 </html>

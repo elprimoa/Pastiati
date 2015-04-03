@@ -35,24 +35,29 @@ $('#close-forgot').click(function () {
 });
 
 function load(){
-	$.getJSON("pasties.json", function(data) {
-	    for(i=idx;i<idx+5;i++){
+	$.getJSON("http://127.0.0.1:8000/load", {page: idx} )
+	.done(function(data) {
+		for(i=0;i<data.length;i++){
 	    	id = data[i].id;
 	    	$(".panel-group").append('<div class="panel panel-default"><div id="p'+id+'" class="panel-heading"><h4 id="pp' + id + '" class="panel-title">');
 	    	if(data[i].private) {
-	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +'</b>, ' + data[i].owner + '</a> <span class="glyphicon glyphicon-lock lock" aria-hidden="true"></span><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a> <span class="glyphicon glyphicon-lock lock" aria-hidden="true"></span><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
 	    	}
 	    	else {
-	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +'</b>, ' + data[i].owner + '</a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
 	    	}
-	    	console.log($("#pp"+id));
 			$('#p'+id).append('<div id="pastie'+data[i].id+'" class="panel-collapse collapse"><div id="dv' + id + '" class="panel-body">');
 	        $('#dv' + id).append('<p id="dvp' + id + '">' + data[i].content + '</p><br>');
 	        $('#dv' + id).append('<p><b>Owner:</b> ' + data[i].owner + '</p>');
-	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie.html">' + data[i].url + '</a></p>');
+	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie.html"> http:/127.0.0.1:8000/pasties/' + id + '</a></p>');
+	        $('#dv' + id).append('<p><b>Created at:</b> ' + data[i].created_at + '</p>');
+	        $('#dv' + id).append('<p><b>Updated at:</b> ' + data[i].updated_at + '</p>');
 	    }
 	    idx=idx+5;
 	    $("#morePasties").blur();
+	})
+	.fail(function(){
+		alert("No more pasties");
 	});
 }
 
@@ -91,8 +96,9 @@ function logout(msj) {
 }
 
 function loadOwn(){
-	$.getJSON("pasties.json", function(data) {
-	    for(i=idx;i<idx+5;i++){
+	$.getJSON("http://127.0.0.1:8000/loadown", {page: idx} )
+	.done(function(data) {
+		for(i=0;i<data.length;i++){
 	    	id = data[i].id;
 	    	$(".panel-group").append('<div class="panel panel-default"><div id="p'+id+'" class="panel-heading"><h4 id="pp' + id + '" class="panel-title">');
 	    	if(data[i].private) {
@@ -101,12 +107,18 @@ function loadOwn(){
 	    	else {
 	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
 	    	}
-	    	console.log($("#pp"+id));
 			$('#p'+id).append('<div id="pastie'+data[i].id+'" class="panel-collapse collapse"><div id="dv' + id + '" class="panel-body">');
 	        $('#dv' + id).append('<p id="dvp' + id + '">' + data[i].content + '</p><br>');
+	        $('#dv' + id).append('<p><b>Owner:</b> ' + data[i].owner + '</p>');
+	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie.html"> http:/127.0.0.1:8000/pasties/' + id + '</a></p>');
+	        $('#dv' + id).append('<p><b>Created at:</b> ' + data[i].created_at + '</p>');
+	        $('#dv' + id).append('<p><b>Updated at:</b> ' + data[i].updated_at + '</p>');
 	    }
 	    idx=idx+5;
 	    $("#morePasties").blur();
+	})
+	.fail(function(){
+		alert("No more pasties");
 	});
 }
 
