@@ -36,6 +36,8 @@ class User:
         self.fullname = None
       query.close()
       connection.close()
+
+
   def save(self, create = None, update = None, password = None):
     if create: 
       connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')

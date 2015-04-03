@@ -77,8 +77,19 @@ def domodify():
     u.email = email
   if(fullname != ""):
     u.fullname = fullname
-  u.save(update = True)
-  return redirect(url_for('profile'))
+  ve = User(email = email)
+  vu = User(username = username)
+  if ve.email:
+      print("Email usado")
+      return redirect(url_for('modify'))
+  else:
+    if vu.username:
+      print("Usuario usado")
+      return redirect(url_for('modify'))
+    else:
+      u.save(update = True)
+      return redirect(url_for('profile'))
+  
 
 @app.route('/doregister', methods = ['POST'])
 def doregister():
@@ -92,8 +103,23 @@ def doregister():
   u.fullname = fullname
   u.email = email
   u.password = password
-  u.save(create = True)
-  return redirect(url_for('home'))
+  ve = User(email = email)
+  vu = User(username = username)
+  if ve.email:
+      flash("Email in use")
+      print(ve.email)
+      print("Email usado")
+      return redirect(url_for('register'))
+  else:
+    if vu.username:
+      flash("Username in use")
+      print("Usuario usado")
+      return redirect(url_for('register'))
+    else:
+      u.save(create = True)
+      flash("User Created")
+      print("Usuario Creado")
+      return redirect(url_for('home'))
 
 @app.route('/dochange', methods = ['POST'])
 def dochange():
