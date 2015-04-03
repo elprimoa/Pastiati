@@ -94,11 +94,28 @@ def pastie(pid):
 @app.route('/modpastie/<int:pid>', methods = ['PUT', 'DELETE'])
 def modpastie(pid):
   if request.method == 'PUT':
-    return ""
+    p = Pastie(pid = pid)
+    p.title = request.form['title']
+    p.content = request.form['content']
+    private = request.form['private']
+    if(private == 'false'):
+      p.private = 0
+    else:
+      p.private = 1
+    p.updated_at = datetime.now()
+    p.save()
   if request.method == 'DELETE':
     p = Pastie(pid = pid)
     p.delete()
   return ""
+
+@app.route('/pastiemod/<int:pid>')
+def pastiemod(pid):
+  if 'username' in session:
+    username = session['username']
+    update = Pastie(pid = pid)
+    return render_template('create.html', username = username, update = update)
+  return redirect(url_for('home'))
 
 @app.route('/loadown', methods = ['GET'])
 def loadown():
@@ -145,6 +162,48 @@ def load():
   response_data = simplejson.dumps(to_json)
   return response_data
 
+@app.route('/search', methods = ['GET'])
+def search():
+  page = request.args['page']
+  params = request.args['search'].split(" ")
+  if session.get('username'):
+    query = "SELECT id, title, content, owner, private, created_at, updated_at from pastie where (owner = '" + session['username'] + "' OR private = 0) and ("
+    first = True
+    for p in params:
+      if not first:
+        query = query + " OR "
+      else:
+        first = False
+      query = query + "content SIMILAR TO '%" + p + "%'"
+    query = query + ") ORDER BY updated_at DESC LIMIT 5 OFFSET " + page
+    p = Pasties(username = session['username'], condition = 1, offset = page, search = query)
+  else:
+    query = "SELECT id, title, content, owner, private, created_at, updated_at from pastie where private = 0 and ("
+    first = True
+    for p in params:
+      if not first:
+        query = query + " OR "
+      else:
+        first = False
+      query = query + "content SIMILAR TO '%" + p + "%'"
+    query = query + ") ORDER BY updated_at DESC LIMIT 5 OFFSET " + page
+    p = Pasties(offset = page, search = query)
+  if len(p.id) == 0:
+    abort(404)
+  to_json = []
+  desired_format = '%Y-%m-%dT%H-%M'
+  for i in range(len(p.id)):
+    p_dict = {}
+    p_dict['id'] = p.id[i]
+    p_dict['title'] = p.title[i]
+    p_dict['content'] = p.content[i]
+    p_dict['owner'] = p.owner[i]
+    p_dict['private'] = p.private[i]
+    p_dict['created_at'] = p.created_at[i].strftime(desired_format)
+    p_dict['updated_at'] = p.updated_at[i].strftime(desired_format)
+    to_json.append(p_dict)
+  response_data = simplejson.dumps(to_json)
+  return response_data
 
 @app.route('/domodify', methods = ['POST'])
 def domodify():

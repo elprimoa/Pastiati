@@ -144,3 +144,55 @@ function delete_pastie(id) {
 		window.location = 'home';
 	});
 }
+
+function update_pastie(id) {
+	var mtitle = $("#title").val();
+	var mcontent = $("#content").val();
+	var mprivate = false;
+	if($("#private").is(":checked")) { mprivate = true; }
+	$("#updateButton").html("Updating . . .");
+	$.ajax({
+		method: "PUT",
+		url: "http://127.0.0.1:8000/modpastie/" + id,
+		data: { title: mtitle, content: mcontent, private: mprivate }
+	})
+	.done(function(){
+		window.location = '../pastie/' + id;
+	});
+}
+
+search_params = "";
+
+function search() {
+	if(search_params != $("#searchBar").val()) {
+		search_params = $("#searchBar").val();
+		$(".panel-group").empty();
+		idx = 0;
+		$("#goButton").blur();
+		$("#morePasties").attr('onclick', 'search()');
+	}
+	$.getJSON("http://127.0.0.1:8000/search", {page: idx, search: search_params} )
+	.done(function(data) {
+		for(i=0;i<data.length;i++){
+	    	id = data[i].id;
+	    	$(".panel-group").append('<div class="panel panel-default"><div id="p'+id+'" class="panel-heading"><h4 id="pp' + id + '" class="panel-title">');
+	    	if(data[i].private) {
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a> <span class="glyphicon glyphicon-lock lock" aria-hidden="true"></span><a class="pull-right" href="#" onclick="delete_pastie('+id+')"><span style="color: #ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    	}
+	    	else {
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a><a class="pull-right" href="#" onclick="delete_pastie('+id+')"><span style="color: #ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    	}
+			$('#p'+id).append('<div id="pastie'+data[i].id+'" class="panel-collapse collapse"><div id="dv' + id + '" class="panel-body">');
+	        $('#dv' + id).append('<p id="dvp' + id + '">' + data[i].content + '</p><br>');
+	        $('#dv' + id).append('<p><b>Owner:</b> ' + data[i].owner + '</p>');
+	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie/' + id + '"> http:/127.0.0.1:8000/pasties/' + id + '</a></p>');
+	        $('#dv' + id).append('<p><b>Created at:</b> ' + data[i].created_at + '</p>');
+	        $('#dv' + id).append('<p><b>Updated at:</b> ' + data[i].updated_at + '</p>');
+	    }
+	    idx=idx+5;
+	    $("#morePasties").blur();
+	})
+	.fail(function(){
+		alert("No more pasties");
+	});
+}

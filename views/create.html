@@ -2,10 +2,10 @@
 <html>
 <head>
 	<title>Pastiati - Create</title>
-	<link rel="stylesheet" type="text/css" href="statics/css/bootstrap.css">
-  	<link rel="stylesheet" type="text/css" href="statics/css/style.css">
+	<link rel="stylesheet" type="text/css" href="{% if update %}../{% endif%}statics/css/bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="{% if update %}../{% endif%}statics/css/style.css">
 </head>
-<body background="statics/media/orangebk.jpg">
+<body background="{% if update %}../{% endif%}statics/media/orangebk.jpg">
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container header">
 			<div class="navbar-header">
@@ -19,11 +19,11 @@
 				</ul>
 				{% if username %}
 		        <ul class="nav navbar-nav navbar-right" id="username">
-		          <li class="active"><a href="create">Crear Pastie</a></li>
+		          <li class="active"><a href="{% if update %}../{% endif%}create">Crear Pastie</a></li>
 		          <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>{{username}}</b> <span class="caret"></span></a>
 		            <ul class="dropdown-menu" role="menu">
-		              <li><a href="profile">Profile</a></li>
+		              <li><a href="{% if update %}../{% endif%}profile">Profile</a></li>
 		              <li><a href="#" onclick="logout('home')">Log out</a></li>
 		            </ul>
 		          </li>
@@ -39,7 +39,7 @@
 		          <button type="button" class="btn btn-success" onclick="login()">Log in</button>
 		          <div class="form-group has-feedback">
 		            <a href="forgot">
-		              <img src='statics/media/forgot.png' height="30" width="30">
+		              <img src='{% if update %}../{% endif%}statics/media/forgot.png' height="30" width="30">
 		            </a>
 		          </div>
 		        </form>
@@ -54,25 +54,27 @@
 				<form class="form" method="POST" action="docreate" enctype="multipart/form-data">
 					<div class="form-group">
 						<label class="label-form" for="name">Title</label>
-	  					<input type="text" class="form-control" id="title" name="title" required>
+	  					<input type="text" class="form-control" id="title" name="title" required {% if update %} value="{{update.title}}" {% endif %}>
 	  				</div>
 	  				<div class="form-group">
 	  					<label class="label-form" for="lastname">Introduce content</label>
-	  					<textarea type="text" class="form-control" id="content" name="content" rows="10"></textarea>
+	  					<textarea type="text" class="form-control" id="content" name="content" rows="10">{% if update %} {{update.content}} {% endif %}</textarea>
 	  				</div>
+	  				{% if not update %}
 	  				<div class="form-group">
 					    <label class="label-form file-label" for="exampleInputFile" id="label-file">Or upload it</label>
 					    <input type="file" id="exampleInputFile" name="file" accept="text/plain">
 					    <p class="help-block">Select a .txt file on your computer.</p>
 					  </div>
+					{% endif%}
 					  <div class="checkbox">
 					    <label class="label-form">
-					      <input type="checkbox" name="private" value="private"> Make this pastie <b>private</b>
+					      <input type="checkbox" name="private" value="private" {% if update.private == 1 %} checked {% endif %}> Make this pastie <b>private</b>
 					    </label>
 					  </div>
 					<br>
 					<center>
-						<button type="submit" class="btn btn-success">Create</button>
+						<button type={% if update %}"button" onclick="update_pastie({{update.id}})"{% else %}"submit"{% endif %} class="btn btn-success">{% if update %}Update{% else %}Create{% endif%}</button>
 					</center>
 				</form>
 			</div>
@@ -83,8 +85,8 @@
     Copyright 2015 Luis Arguello - Rosmeli Quintero - All rights reserved | Powered by Bootstrap and jQuery
   </footer>
 
-  <script type="text/javascript" src="statics/js/jquery-2.1.3.js"></script>
-	<script type="text/javascript" src="statics/js/load.js"></script>
-	<script type="text/javascript" src="statics/js/bootstrap.js"></script>
+  <script type="text/javascript" src="{% if update %}../{% endif%}statics/js/jquery-2.1.3.js"></script>
+	<script type="text/javascript" src="{% if update %}../{% endif%}statics/js/load.js"></script>
+	<script type="text/javascript" src="{% if update %}../{% endif%}statics/js/bootstrap.js"></script>
 </body>
 </html>
