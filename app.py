@@ -91,6 +91,15 @@ def pastie(pid):
     return render_template('pastie.html', error="No tiene permisos de ver ese pastie")
   return render_template('pastie.html', p = p)
 
+@app.route('/modpastie/<int:pid>', methods = ['PUT', 'DELETE'])
+def modpastie(pid):
+  if request.method == 'PUT':
+    return ""
+  if request.method == 'DELETE':
+    p = Pastie(pid = pid)
+    p.delete()
+  return ""
+
 @app.route('/loadown', methods = ['GET'])
 def loadown():
   page = request.args['page']

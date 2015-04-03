@@ -98,6 +98,14 @@ class Pastie:
       query.close()
       connection.close()
 
+  def delete(self):
+    connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+    query = connection.cursor()
+    query.execute('DELETE FROM pastie WHERE id = %s', (self.id,))
+    connection.commit()
+    query.close()
+    connection.close()
+
 
 class Pasties:
   def __init__(self, username = None, condition = None, offset = None):

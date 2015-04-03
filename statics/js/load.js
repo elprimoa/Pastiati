@@ -41,15 +41,15 @@ function load(){
 	    	id = data[i].id;
 	    	$(".panel-group").append('<div class="panel panel-default"><div id="p'+id+'" class="panel-heading"><h4 id="pp' + id + '" class="panel-title">');
 	    	if(data[i].private) {
-	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a> <span class="glyphicon glyphicon-lock lock" aria-hidden="true"></span><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a> <span class="glyphicon glyphicon-lock lock" aria-hidden="true"></span><a class="pull-right" href="#" onclick="delete_pastie('+id+')"><span style="color: #ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
 	    	}
 	    	else {
-	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
+	    		$("#pp"+id).append('<a data-toggle="collapse" data-parent="#accordion" href="#pastie' + data[i].id + '"> <b>'+ data[i].title +' </b> </a><a class="pull-right" href="#" onclick="delete_pastie('+id+')"><span style="color: #ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br><br><i class="resumen" id="preview' + data[i].id + '">' + data[i].content.substring(0, 100) + '...</i>');
 	    	}
 			$('#p'+id).append('<div id="pastie'+data[i].id+'" class="panel-collapse collapse"><div id="dv' + id + '" class="panel-body">');
 	        $('#dv' + id).append('<p id="dvp' + id + '">' + data[i].content + '</p><br>');
 	        $('#dv' + id).append('<p><b>Owner:</b> ' + data[i].owner + '</p>');
-	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie.html"> http:/127.0.0.1:8000/pasties/' + id + '</a></p>');
+	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie/' + id + '"> http:/127.0.0.1:8000/pasties/' + id + '</a></p>');
 	        $('#dv' + id).append('<p><b>Created at:</b> ' + data[i].created_at + '</p>');
 	        $('#dv' + id).append('<p><b>Updated at:</b> ' + data[i].updated_at + '</p>');
 	    }
@@ -110,7 +110,7 @@ function loadOwn(){
 			$('#p'+id).append('<div id="pastie'+data[i].id+'" class="panel-collapse collapse"><div id="dv' + id + '" class="panel-body">');
 	        $('#dv' + id).append('<p id="dvp' + id + '">' + data[i].content + '</p><br>');
 	        $('#dv' + id).append('<p><b>Owner:</b> ' + data[i].owner + '</p>');
-	        $('#dv' + id).append('<p><b>URL: </b><a href="pastie.html"> http:/127.0.0.1:8000/pasties/' + id + '</a></p>');
+	        $('#dv' + id).append('<p><b>URL: </b><a href="pasties/' + id + '"> http:/127.0.0.1:8000/pasties/' + id + '</a></p>');
 	        $('#dv' + id).append('<p><b>Created at:</b> ' + data[i].created_at + '</p>');
 	        $('#dv' + id).append('<p><b>Updated at:</b> ' + data[i].updated_at + '</p>');
 	    }
@@ -133,4 +133,14 @@ function verifyPass(url, id) {
 		$("#confirm-pass").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
 		return false;
 	}
+}
+
+function delete_pastie(id) {
+	$.ajax({
+		method: "DELETE",
+		url: "http://127.0.0.1:8000/modpastie/" + id
+	})
+	.done(function(){
+		window.location = 'home';
+	});
 }
