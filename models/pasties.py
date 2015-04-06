@@ -97,51 +97,108 @@ class Pastie:
       connection.commit()
       query.close()
       connection.close()
-
-
-class Pasties:
-  def __init__(self, username = None, condition = None, offset = None):
-    if username:
-      connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
-      query = connection.cursor()
-      if(condition == 1):
-        query.execute('SELECT id, title, content, owner, private, created_at, updated_at from pastie where owner = %s OR private = 0 ORDER BY updated_at DESC LIMIT 5 OFFSET %s', (username, int(offset),))
-      if(condition == 2):
-        query.execute('SELECT id, title, content, owner, private, created_at, updated_at from pastie where owner = %s ORDER BY updated_at DESC LIMIT 5 OFFSET %s', (username, int(offset),))
-      result = query.fetchall()
-      self.id = []
-      self.title = []
-      self.content = []
-      self.owner = []
-      self.private = []
-      self.created_at = []
-      self.updated_at = []
-      for row in result:
-        self.id.append(row[0])
-        self.title.append(row[1])
-        self.content.append(row[2])
-        self.owner.append(row[3])
-        self.private.append(row[4])
-        self.created_at.append(row[5])
-        self.updated_at.append(row[6])
     else:
       connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
       query = connection.cursor()
-      query.execute('SELECT id, title, content, owner, private, created_at, updated_at from pastie where private = 0 ORDER BY updated_at DESC LIMIT 5 OFFSET %s', (int(offset),))
-      result = query.fetchall()
-      self.id = []
-      self.title = []
-      self.content = []
-      self.owner = []
-      self.private = []
-      self.created_at = []
-      self.updated_at = []
-      for row in result:
-        self.id.append(row[0])
-        self.title.append(row[1])
-        self.content.append(row[2])
-        self.owner.append(row[3])
-        self.private.append(row[4])
-        self.created_at.append(row[5])
-        self.updated_at.append(row[6])
+      query.execute('UPDATE pastie SET title = %s, content = %s, private = %s, updated_at = %s where id = %s', (self.title, self.content, self.private, self.updated_at, self.id,))
+      connection.commit()
+      query.close()
+      connection.close()
+
+  def delete(self):
+    connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+    query = connection.cursor()
+    query.execute('DELETE FROM pastie WHERE id = %s', (self.id,))
+    connection.commit()
+    query.close()
+    connection.close()
+
+
+class Pasties:
+  def __init__(self, username = None, condition = None, offset = None, search = None):
+    if search: 
+      if username:
+        connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+        query = connection.cursor()
+        query.execute(search)
+        result = query.fetchall()
+        self.id = []
+        self.title = []
+        self.content = []
+        self.owner = []
+        self.private = []
+        self.created_at = []
+        self.updated_at = []
+        for row in result:
+          self.id.append(row[0])
+          self.title.append(row[1])
+          self.content.append(row[2])
+          self.owner.append(row[3])
+          self.private.append(row[4])
+          self.created_at.append(row[5])
+          self.updated_at.append(row[6])
+      else:
+        connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+        query = connection.cursor()
+        query.execute(search)
+        result = query.fetchall()
+        self.id = []
+        self.title = []
+        self.content = []
+        self.owner = []
+        self.private = []
+        self.created_at = []
+        self.updated_at = []
+        for row in result:
+          self.id.append(row[0])
+          self.title.append(row[1])
+          self.content.append(row[2])
+          self.owner.append(row[3])
+          self.private.append(row[4])
+          self.created_at.append(row[5])
+          self.updated_at.append(row[6])
+    else:
+      if username:
+        connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+        query = connection.cursor()
+        if(condition == 1):
+          query.execute("SELECT id, title, content, owner, private, created_at, updated_at from pastie where owner = %s OR private = 0 ORDER BY updated_at DESC LIMIT 5 OFFSET %s", (username, int(offset),))
+        if(condition == 2):
+          query.execute("SELECT id, title, content, owner, private, created_at, updated_at from pastie where owner = %s ORDER BY updated_at DESC LIMIT 5 OFFSET %s", (username, int(offset),))
+        result = query.fetchall()
+        self.id = []
+        self.title = []
+        self.content = []
+        self.owner = []
+        self.private = []
+        self.created_at = []
+        self.updated_at = []
+        for row in result:
+          self.id.append(row[0])
+          self.title.append(row[1])
+          self.content.append(row[2])
+          self.owner.append(row[3])
+          self.private.append(row[4])
+          self.created_at.append(row[5])
+          self.updated_at.append(row[6])
+      else:
+        connection = psycopg2.connect('dbname=ati_database user=ati password=ati host=127.0.0.1')
+        query = connection.cursor()
+        query.execute("SELECT id, title, content, owner, private, created_at, updated_at from pastie where private = 0 ORDER BY updated_at DESC LIMIT 5 OFFSET %s", (int(offset),))
+        result = query.fetchall()
+        self.id = []
+        self.title = []
+        self.content = []
+        self.owner = []
+        self.private = []
+        self.created_at = []
+        self.updated_at = []
+        for row in result:
+          self.id.append(row[0])
+          self.title.append(row[1])
+          self.content.append(row[2])
+          self.owner.append(row[3])
+          self.private.append(row[4])
+          self.created_at.append(row[5])
+          self.updated_at.append(row[6])
 
